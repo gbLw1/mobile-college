@@ -1,41 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IMC.MainPage">
+<ContentPage
+    x:Class="IMC.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <StackLayout Margin="10">
+        <Label
+            FontSize="Title"
+            HorizontalTextAlignment="Center"
+            Text="Calcule seu Imc"
+            TextColor="HotPink"
+            TextTransform="Uppercase" />
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+        <Frame CornerRadius="15">
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+            <StackLayout>
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+                <Label Text="Sua altura:" />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+                <Entry x:Name="txt_altura" Placeholder="Em metros" />
 
-        </VerticalStackLayout>
-    </ScrollView>
+                <Label Text="Seu peso:" />
+
+                <Entry x:Name="txt_peso" Placeholder="Em kilos" />
+
+                <Button
+                    Clicked="CalcularIMC"
+                    CornerRadius="5"
+                    Text="Calcular" />
+
+                <Button
+                    x:Name="btn_limpar"
+                    Margin="0,10,0,0"
+                    Clicked="Limpar"
+                    CornerRadius="5"
+                    IsVisible="false"
+                    Text="Limpar" />
+
+                <Label
+                    x:Name="txt_res"
+                    Margin="0,30,0,0"
+                    BackgroundColor="DarkRed"
+                    FontAttributes="Bold,Italic"
+                    FontSize="Large"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="false"
+                    TextColor="White" />
+
+            </StackLayout>
+
+        </Frame>
+
+        <TableView x:Name="tbl_referencia" IsVisible="false">
+            <TableRoot>
+                <TableSection>
+                    <TextCell Text="Abaixo de 17 - muito abaixo do peso" />
+                    <TextCell Text="Entre 17 e 18,49 - Abaixo do peso" />
+                    <TextCell Text="Entre 18,5 e 24,99 - Peso normal" />
+                    <TextCell Text="Entre 25 e 29,99 - Sobrepeso" />
+                    <TextCell Text="Entre 30 e 34,99 - Obesidade 1" />
+                    <TextCell Text="Entre 35 e 39,99 - Obesidade 2" />
+                    <TextCell Text="Acima de 40 - Obesidade mórbida" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+
+    </StackLayout>
 
 </ContentPage>
