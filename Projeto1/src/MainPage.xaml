@@ -5,50 +5,47 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <StackLayout Margin="10">
+
         <Label
+            FontAttributes="Bold"
             FontSize="Title"
             HorizontalTextAlignment="Center"
             Text="Calcule seu Imc"
-            TextColor="HotPink"
+            TextColor="#333"
             TextTransform="Uppercase" />
 
-        <Frame CornerRadius="15">
-
+        <Frame Margin="0,10,0,10" CornerRadius="10">
             <StackLayout>
-
                 <Label Text="Sua altura:" />
-
                 <Entry x:Name="txt_altura" Placeholder="Em metros" />
 
                 <Label Text="Seu peso:" />
-
                 <Entry x:Name="txt_peso" Placeholder="Em kilos" />
 
                 <Button
+                    Margin="0,10,0,0"
                     Clicked="CalcularIMC"
-                    CornerRadius="5"
+                    CornerRadius="10"
                     Text="Calcular" />
 
                 <Button
                     x:Name="btn_limpar"
                     Margin="0,10,0,0"
                     Clicked="Limpar"
-                    CornerRadius="5"
+                    CornerRadius="10"
                     IsVisible="false"
                     Text="Limpar" />
 
                 <Label
                     x:Name="txt_res"
-                    Margin="0,30,0,0"
-                    BackgroundColor="DarkRed"
+                    Margin="0,20,0,0"
+                    BackgroundColor="#ddd"
                     FontAttributes="Bold,Italic"
                     FontSize="Large"
                     HorizontalTextAlignment="Center"
                     IsVisible="false"
-                    TextColor="White" />
-
+                    TextColor="Black" />
             </StackLayout>
-
         </Frame>
 
         <TableView x:Name="tbl_referencia" IsVisible="false">
@@ -66,5 +63,4 @@
         </TableView>
 
     </StackLayout>
-
 </ContentPage>
