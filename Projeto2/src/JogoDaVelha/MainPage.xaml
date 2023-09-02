@@ -1,41 +1,126 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="JogoDaVelha.MainPage">
+<ContentPage
+    x:Class="JogoDaVelha.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+            <GradientStop Offset="0.3" Color="Purple" />
+            <GradientStop Offset="1.1" Color="Red" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+    <Grid
+        x:Name="test"
+        Padding="10"
+        ColumnDefinitions="*, *, *"
+        ColumnSpacing="10"
+        RowDefinitions="*, *, *, *"
+        RowSpacing="10"
+        VerticalOptions="Center">
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Margin="0,0,0,15"
+            FontSize="40"
+            HorizontalTextAlignment="Center"
+            Text="Jogo da Velha" />
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+        <Button
+            x:Name="btn10"
+            Grid.Row="1"
+            Grid.Column="0"
+            BackgroundColor="White"
+            Clicked="HandleClick"
+            CornerRadius="5"
+            FontSize="Large"
+            HeightRequest="100"
+            Text="" />
+        <Button
+            x:Name="btn11"
+            Grid.Row="1"
+            Grid.Column="1"
+            BackgroundColor="White"
+            Clicked="HandleClick"
+            CornerRadius="5"
+            FontSize="Large"
+            HeightRequest="100"
+            Text="" />
+        <Button
+            x:Name="btn12"
+            Grid.Row="1"
+            Grid.Column="2"
+            BackgroundColor="White"
+            Clicked="HandleClick"
+            CornerRadius="5"
+            FontSize="Large"
+            HeightRequest="100"
+            Text="" />
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+        <Button
+            x:Name="btn20"
+            Grid.Row="2"
+            Grid.Column="0"
+            BackgroundColor="White"
+            Clicked="HandleClick"
+            CornerRadius="5"
+            FontSize="Large"
+            HeightRequest="100"
+            Text="" />
+        <Button
+            x:Name="btn21"
+            Grid.Row="2"
+            Grid.Column="1"
+            BackgroundColor="White"
+            Clicked="HandleClick"
+            CornerRadius="5"
+            FontSize="Large"
+            HeightRequest="100"
+            Text="" />
+        <Button
+            x:Name="btn22"
+            Grid.Row="2"
+            Grid.Column="2"
+            BackgroundColor="White"
+            Clicked="HandleClick"
+            CornerRadius="5"
+            FontSize="Large"
+            HeightRequest="100"
+            Text="" />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+        <Button
+            x:Name="btn30"
+            Grid.Row="3"
+            Grid.Column="0"
+            BackgroundColor="White"
+            Clicked="HandleClick"
+            CornerRadius="5"
+            FontSize="Large"
+            HeightRequest="100"
+            Text="" />
+        <Button
+            x:Name="btn31"
+            Grid.Row="3"
+            Grid.Column="1"
+            BackgroundColor="White"
+            Clicked="HandleClick"
+            CornerRadius="5"
+            FontSize="Large"
+            HeightRequest="100"
+            Text="" />
+        <Button
+            x:Name="btn32"
+            Grid.Row="3"
+            Grid.Column="2"
+            BackgroundColor="White"
+            Clicked="HandleClick"
+            CornerRadius="5"
+            FontSize="Large"
+            HeightRequest="100"
+            Text="" />
+    </Grid>
 
-        </VerticalStackLayout>
-    </ScrollView>
 
 </ContentPage>
