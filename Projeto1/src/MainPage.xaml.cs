@@ -14,13 +14,6 @@ public partial class MainPage : ContentPage
             double peso = double.Parse(txt_peso.Text);
             double altura = double.Parse(txt_altura.Text);
 
-            //if (!double.TryParse(txt_altura.Text, out double altura)
-            //   || !double.TryParse(txt_peso.Text, out double peso))
-            //{
-            //    DisplayAlert("Erro", "Coloque as informações corretas", "Ok sou debiloide 😒");
-            //    return;
-            //}
-
             double imc = (peso / (altura * altura));
             if (double.IsNaN(imc) || double.IsInfinity(imc))
             {
@@ -44,40 +37,6 @@ public partial class MainPage : ContentPage
         catch (Exception ex)
         {
             DisplayAlert("Erro", ex.Message, "OK");
-        }
-    }
-
-    private void CalcularIMC2(object sender, EventArgs e)
-    {
-        if (double.TryParse(txt_altura.Text, out double altura)
-            && double.TryParse(txt_peso.Text, out double peso))
-        {
-            double imc = (peso / (altura * altura));
-            DisplayAlert("Seu IMC é: ", imc.ToString(), "Massa viu pai 😎😎😎🔥");
-        }
-        else
-        {
-            DisplayAlert("Erro", "Coloque as informações corretas", "Ok sou debiloide 😒");
-        }
-
-    }
-
-    private void CalcularIMC3(object sender, EventArgs e)
-    {
-        try
-        {
-            double peso = double.Parse(txt_peso.Text);
-            double altura = double.Parse(txt_altura.Text);
-            double imc = (peso / (altura * altura));
-
-            DisplayAlert("Seu IMC é: ", imc.ToString(), "Massa viu pai 😎😎😎🔥");
-
-            tbl_referencia.IsVisible = true;
-            btn_limpar.IsVisible = true;
-        }
-        catch (Exception ex)
-        {
-            DisplayAlert("Ops", ex.Message, "OK 🫡");
         }
     }
 
