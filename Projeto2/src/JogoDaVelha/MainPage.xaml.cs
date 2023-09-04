@@ -3,6 +3,8 @@
 public partial class MainPage : ContentPage
 {
     Player Player { get; set; } = Player.X;
+    public int PlayerXPoints { get; set; } = 0;
+    public int PlayerOPoints { get; set; } = 0;
 
     public MainPage() => InitializeComponent();
 
@@ -26,11 +28,13 @@ public partial class MainPage : ContentPage
         if (VerificarVencedor(Player.X))
         {
             await DisplayAlert("GG", "O jogador ❌ venceu!", "Jogar novamente.");
+            pontuacaoPlayerX.Text = $"X = {++PlayerXPoints}";
             JogarNovamente();
         }
         else if (VerificarVencedor(Player.O))
         {
             await DisplayAlert("GG", "O jogador ⭕ venceu!", "Jogar novamente.");
+            pontuacaoPlayerO.Text = $"O = {++PlayerOPoints}";
             JogarNovamente();
         }
         else
@@ -38,6 +42,14 @@ public partial class MainPage : ContentPage
             await VerificarVelha();
         }
 
+    }
+
+    void ResetarPontuacao(object sender, EventArgs e)
+    {
+        PlayerXPoints = 0;
+        PlayerOPoints = 0;
+        pontuacaoPlayerX.Text = "X = 0";
+        pontuacaoPlayerO.Text = "O = 0";
     }
 
     async Task VerificarVelha()

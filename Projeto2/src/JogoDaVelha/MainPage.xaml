@@ -12,11 +12,10 @@
     </ContentPage.Background>
 
     <Grid
-        x:Name="test"
         Padding="10"
         ColumnDefinitions="*, *, *"
         ColumnSpacing="10"
-        RowDefinitions="*, *, *, *"
+        RowDefinitions="*, *, *, *, *, *"
         RowSpacing="10"
         VerticalOptions="Center">
         <Label
@@ -24,9 +23,10 @@
             Grid.Column="0"
             Grid.ColumnSpan="3"
             Margin="0,0,0,15"
-            FontSize="40"
+            FontSize="50"
             HorizontalTextAlignment="Center"
-            Text="Jogo da Velha" />
+            Text="Jogo da Velha"
+            TextColor="White" />
 
         <Button
             x:Name="btn10"
@@ -120,7 +120,32 @@
             FontSize="Large"
             HeightRequest="100"
             Text="" />
-    </Grid>
 
+        <Grid
+            Grid.Row="4"
+            Grid.ColumnSpan="3"
+            Margin="10,20">
+            <Label
+                x:Name="pontuacaoPlayerX"
+                FontSize="30"
+                Text="X = 0"
+                TextColor="White" />
+            <Label
+                x:Name="pontuacaoPlayerO"
+                FontSize="30"
+                HorizontalTextAlignment="End"
+                Text="O = 0"
+                TextColor="White" />
+        </Grid>
+
+        <Button
+            Grid.Row="5"
+            Grid.ColumnSpan="3"
+            BackgroundColor="White"
+            Clicked="ResetarPontuacao"
+            FontSize="20"
+            Text="Resetar pontuação"
+            TextColor="Black" />
+    </Grid>
 
 </ContentPage>
