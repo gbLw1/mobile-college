@@ -6,8 +6,8 @@
 
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-            <GradientStop Offset="0.3" Color="Purple" />
-            <GradientStop Offset="1.1" Color="Red" />
+            <GradientStop Offset=".3" Color="#242424" />
+            <GradientStop Offset=".7" Color="#333333" />
         </LinearGradientBrush>
     </ContentPage.Background>
 
@@ -35,7 +35,7 @@
             BackgroundColor="White"
             Clicked="HandleClick"
             CornerRadius="5"
-            FontSize="Large"
+            FontSize="50"
             HeightRequest="100"
             Text="" />
         <Button
@@ -45,7 +45,7 @@
             BackgroundColor="White"
             Clicked="HandleClick"
             CornerRadius="5"
-            FontSize="Large"
+            FontSize="50"
             HeightRequest="100"
             Text="" />
         <Button
@@ -55,7 +55,7 @@
             BackgroundColor="White"
             Clicked="HandleClick"
             CornerRadius="5"
-            FontSize="Large"
+            FontSize="50"
             HeightRequest="100"
             Text="" />
 
@@ -66,7 +66,7 @@
             BackgroundColor="White"
             Clicked="HandleClick"
             CornerRadius="5"
-            FontSize="Large"
+            FontSize="50"
             HeightRequest="100"
             Text="" />
         <Button
@@ -76,7 +76,7 @@
             BackgroundColor="White"
             Clicked="HandleClick"
             CornerRadius="5"
-            FontSize="Large"
+            FontSize="50"
             HeightRequest="100"
             Text="" />
         <Button
@@ -86,7 +86,7 @@
             BackgroundColor="White"
             Clicked="HandleClick"
             CornerRadius="5"
-            FontSize="Large"
+            FontSize="50"
             HeightRequest="100"
             Text="" />
 
@@ -97,7 +97,7 @@
             BackgroundColor="White"
             Clicked="HandleClick"
             CornerRadius="5"
-            FontSize="Large"
+            FontSize="50"
             HeightRequest="100"
             Text="" />
         <Button
@@ -107,7 +107,7 @@
             BackgroundColor="White"
             Clicked="HandleClick"
             CornerRadius="5"
-            FontSize="Large"
+            FontSize="50"
             HeightRequest="100"
             Text="" />
         <Button
@@ -117,7 +117,7 @@
             BackgroundColor="White"
             Clicked="HandleClick"
             CornerRadius="5"
-            FontSize="Large"
+            FontSize="50"
             HeightRequest="100"
             Text="" />
 
@@ -128,13 +128,13 @@
             <Label
                 x:Name="pontuacaoPlayerX"
                 FontSize="30"
-                Text="X = 0"
+                Text="✖️ = 0"
                 TextColor="White" />
             <Label
                 x:Name="pontuacaoPlayerO"
                 FontSize="30"
                 HorizontalTextAlignment="End"
-                Text="O = 0"
+                Text="⭕ = 0"
                 TextColor="White" />
         </Grid>
 

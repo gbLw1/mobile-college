@@ -1,89 +1,101 @@
-﻿namespace JogoDaVelha;
+﻿using JogoDaVelha.Enums;
+
+namespace JogoDaVelha;
 
 public partial class MainPage : ContentPage
 {
-    Player Player { get; set; } = Player.X;
+    private Player Player { get; set; } = Player.X;
+    private string CurrentPlayer => Player is Player.X ? "✖️" : "⭕";
+
     public int PlayerXPoints { get; set; } = 0;
     public int PlayerOPoints { get; set; } = 0;
 
-    public MainPage() => InitializeComponent();
+    private readonly Button[,] buttons;
 
-    async void HandleClick(object sender, EventArgs e)
+    public MainPage()
     {
-        Button btn = (Button)sender;
+        InitializeComponent();
 
-        btn.IsEnabled = false;
-
-        if (Player is Player.X)
+        buttons = new Button[,]
         {
-            btn.Text = "X";
-            Player = Player.O;
-        }
-        else
-        {
-            btn.Text = "O";
-            Player = Player.X;
-        }
-
-        if (VerificarVencedor(Player.X))
-        {
-            await DisplayAlert("GG", "O jogador ❌ venceu!", "Jogar novamente.");
-            pontuacaoPlayerX.Text = $"X = {++PlayerXPoints}";
-            JogarNovamente();
-        }
-        else if (VerificarVencedor(Player.O))
-        {
-            await DisplayAlert("GG", "O jogador ⭕ venceu!", "Jogar novamente.");
-            pontuacaoPlayerO.Text = $"O = {++PlayerOPoints}";
-            JogarNovamente();
-        }
-        else
-        {
-            await VerificarVelha();
-        }
-
-    }
-
-    void ResetarPontuacao(object sender, EventArgs e)
-    {
-        PlayerXPoints = 0;
-        PlayerOPoints = 0;
-        pontuacaoPlayerX.Text = "X = 0";
-        pontuacaoPlayerO.Text = "O = 0";
-    }
-
-    async Task VerificarVelha()
-    {
-        if (!string.IsNullOrWhiteSpace(btn10.Text) && !string.IsNullOrWhiteSpace(btn11.Text) && !string.IsNullOrWhiteSpace(btn12.Text)
-            && !string.IsNullOrWhiteSpace(btn20.Text) && !string.IsNullOrWhiteSpace(btn21.Text) && !string.IsNullOrWhiteSpace(btn22.Text)
-            && !string.IsNullOrWhiteSpace(btn30.Text) && !string.IsNullOrWhiteSpace(btn31.Text) && !string.IsNullOrWhiteSpace(btn32.Text))
-        {
-            await DisplayAlert("GG", "Deu velha 🥸", "Jogar novamente.");
-            JogarNovamente();
+            { btn10, btn11, btn12 },
+            { btn20, btn21, btn22 },
+            { btn30, btn31, btn32 },
         };
     }
 
-    bool VerificarVencedor(Player player)
+    async void HandleClick(object sender, EventArgs e)
     {
-        // Verificar horizontais
-        if ((btn10.Text == player.ToString() && btn11.Text == player.ToString() && btn12.Text == player.ToString())
-            || (btn20.Text == player.ToString() && btn21.Text == player.ToString() && btn22.Text == player.ToString())
-            || (btn30.Text == player.ToString() && btn31.Text == player.ToString() && btn32.Text == player.ToString()))
+        Button btn = sender as Button;
+
+        btn.IsEnabled = false;
+
+        btn.Text = CurrentPlayer;
+
+        if (VerificarVencedor())
+        {
+            if (Player is Player.X)
+            {
+                pontuacaoPlayerX.Text = $"✖️ = {++PlayerXPoints}";
+            }
+            else
+            {
+                pontuacaoPlayerO.Text = $"⭕ = {++PlayerOPoints}";
+            }
+
+            await DisplayAlert("GG", $"O jogador {CurrentPlayer} venceu!", "Jogar novamente.");
+
+            JogarNovamente();
+        }
+        else
+        {
+            if (VerificarEmpate())
+            {
+                await DisplayAlert("GG", "Deu velha 🥸", "Jogar novamente.");
+
+                JogarNovamente();
+            }
+        }
+
+        Player = Player is Player.X ? Player.O : Player.X;
+    }
+
+    bool VerificarVencedor()
+    {
+        // verificar horizontal (linhas)
+        for (int i = 0; i < 3; ++i)
+        {
+            if (buttons[i, 0].Text == CurrentPlayer &&
+                buttons[i, 1].Text == CurrentPlayer &&
+                buttons[i, 2].Text == CurrentPlayer)
+            {
+                return true;
+            }
+        }
+
+        // verificar vertical (colunas)
+        for (int j = 0; j < 3; ++j)
+        {
+            if (buttons[0, j].Text == CurrentPlayer &&
+                buttons[1, j].Text == CurrentPlayer &&
+                buttons[2, j].Text == CurrentPlayer)
+            {
+                return true;
+            }
+        }
+
+        // Verificar diagonal principal
+        if (buttons[0, 0].Text == CurrentPlayer &&
+            buttons[1, 1].Text == CurrentPlayer &&
+            buttons[2, 2].Text == CurrentPlayer)
         {
             return true;
         }
 
-        // verificar verticais
-        if ((btn10.Text == player.ToString() && btn20.Text == player.ToString() && btn30.Text == player.ToString())
-            || (btn11.Text == player.ToString() && btn21.Text == player.ToString() && btn31.Text == player.ToString())
-            || (btn12.Text == player.ToString() && btn22.Text == player.ToString() && btn32.Text == player.ToString()))
-        {
-            return true;
-        }
-
-        // verificar diagonais
-        if ((btn10.Text == player.ToString() && btn21.Text == player.ToString() && btn32.Text == player.ToString())
-            || (btn12.Text == player.ToString() && btn21.Text == player.ToString() && btn30.Text == player.ToString()))
+        // Verificar diagonal secundária
+        if (buttons[0, 2].Text == CurrentPlayer &&
+            buttons[1, 1].Text == CurrentPlayer &&
+            buttons[2, 0].Text == CurrentPlayer)
         {
             return true;
         }
@@ -91,41 +103,33 @@ public partial class MainPage : ContentPage
         return false;
     }
 
+    bool VerificarEmpate()
+    {
+        foreach (Button btn in buttons)
+        {
+            if (string.IsNullOrEmpty(btn.Text))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    void ResetarPontuacao(object sender, EventArgs e)
+    {
+        PlayerXPoints = 0;
+        PlayerOPoints = 0;
+        pontuacaoPlayerX.Text = "✖️ = 0";
+        pontuacaoPlayerO.Text = "⭕ = 0";
+    }
+
     void JogarNovamente()
     {
-        btn10.Text = string.Empty;
-        btn10.IsEnabled = true;
-
-        btn11.Text = string.Empty;
-        btn11.IsEnabled = true;
-
-        btn12.Text = string.Empty;
-        btn12.IsEnabled = true;
-
-        btn20.Text = string.Empty;
-        btn20.IsEnabled = true;
-
-        btn21.Text = string.Empty;
-        btn21.IsEnabled = true;
-
-        btn22.Text = string.Empty;
-        btn22.IsEnabled = true;
-
-        btn30.Text = string.Empty;
-        btn30.IsEnabled = true;
-
-        btn31.Text = string.Empty;
-        btn31.IsEnabled = true;
-
-        btn32.Text = string.Empty;
-        btn32.IsEnabled = true;
-
-        Player = Player.X;
+        foreach (Button botao in buttons)
+        {
+            botao.Text = string.Empty;
+            botao.IsEnabled = true;
+        }
     }
-}
-
-enum Player
-{
-    X = 0,
-    O = 1,
 }
