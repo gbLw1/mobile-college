@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ListaCompras.Views.NovoProduto"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="NovoProduto">
+
+    <ContentPage.Content>
+
+        <StackLayout>
+
+            <Label Text="Descrição:" />
+            <Entry x:Name="txt_descricao" Text="{Binding Descricao}" />
+
+            <Label Text="Quantidade:" />
+            <Entry x:Name="txt_quantidade" Text="{Binding Quantidade}" />
+
+            <Label Text="Preço:" />
+            <Entry x:Name="txt_preco" Text="{Binding Preco}" />
+
+        </StackLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>

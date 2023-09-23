@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ListaCompras.Views.Listagem"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Listagem">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="ToolbarItem_Clicked" Text="Somar" />
+        <ToolbarItem Clicked="ToolbarItem_Clicked_1" Text="Novo" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar
+                x:Name="txt_busca"
+                Placeholder="Qual produto?"
+                TextChanged="txt_busca_TextChanged" />
+
+            <RefreshView x:Name="ref_carregando" IsRefreshing="True">
+                <ListView x:Name="lst_produtos" ItemSelected="lst_produtos_ItemSelected">
+                    <ListView.Header>
+                        <Grid ColumnDefinitions="*, auto, auto" RowDefinitions="auto">
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="Descrição" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="Qtde" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Text="Preço" />
+                        </Grid>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Clicked="MenuItem_Clicked" Text="Remover" />
+                                </ViewCell.ContextActions>
+                                <Grid ColumnDefinitions="*, auto, auto" RowDefinitions="auto">
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Text="{Binding Descricao}" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Text="{Binding Quantidade}" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        Text="{Binding Preco}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
