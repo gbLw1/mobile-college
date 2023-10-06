@@ -5,6 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="NovoProduto">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="ToolbarItem_Clicked" Text="Salvar" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
 
         <StackLayout>

@@ -1,3 +1,5 @@
+using ListaCompras.Models;
+
 namespace ListaCompras.Views;
 
 public partial class NovoProduto : ContentPage
@@ -5,5 +7,26 @@ public partial class NovoProduto : ContentPage
     public NovoProduto()
     {
         InitializeComponent();
+    }
+
+    private async void ToolbarItem_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            var p = new Produto
+            {
+                Descricao = txt_descricao.Text,
+                Quantidade = Convert.ToDouble(txt_quantidade.Text),
+                Preco = Convert.ToDouble(txt_preco.Text)
+            };
+
+            await App.Database.Insert(p);
+            await DisplayAlert("Sucesso!", "Produto Inserido", "OK");
+            await Navigation.PushAsync(new Listagem());
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ops", ex.Message, "OK");
+        }
     }
 }
