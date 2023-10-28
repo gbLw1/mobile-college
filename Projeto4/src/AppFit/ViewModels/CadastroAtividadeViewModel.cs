@@ -26,7 +26,7 @@ public class CadastroAtividadeViewModel : INotifyPropertyChanged
         set
         {
             descricao = value;
-            PropertyChanged(this, new PropertyChangedEventArgs(nameof(descricao)));
+            PropertyChanged(this, new PropertyChangedEventArgs(nameof(Descricao)));
         }
     }
 
@@ -37,7 +37,7 @@ public class CadastroAtividadeViewModel : INotifyPropertyChanged
         set
         {
             observacoes = value;
-            PropertyChanged(this, new PropertyChangedEventArgs(nameof(observacoes)));
+            PropertyChanged(this, new PropertyChangedEventArgs(nameof(Observacoes)));
         }
     }
 
@@ -48,7 +48,7 @@ public class CadastroAtividadeViewModel : INotifyPropertyChanged
         set
         {
             id = value;
-            PropertyChanged(this, new PropertyChangedEventArgs(nameof(id)));
+            PropertyChanged(this, new PropertyChangedEventArgs(nameof(Id)));
         }
     }
 
@@ -59,7 +59,7 @@ public class CadastroAtividadeViewModel : INotifyPropertyChanged
         set
         {
             data = value;
-            PropertyChanged(this, new PropertyChangedEventArgs(nameof(data)));
+            PropertyChanged(this, new PropertyChangedEventArgs(nameof(Data)));
         }
     }
 
@@ -70,78 +70,69 @@ public class CadastroAtividadeViewModel : INotifyPropertyChanged
         set
         {
             peso = value;
-            PropertyChanged(this, new PropertyChangedEventArgs(nameof(peso)));
+            PropertyChanged(this, new PropertyChangedEventArgs(nameof(Peso)));
         }
     }
 
-    public ICommand VerAtividade
+    public ICommand VerAtividade => new Command<int>(async (int id) =>
     {
-        get => new Command<int>(async (int id) =>
+        try
         {
-            try
-            {
-                Atividade model = await App.Database.GetById(id);
+            Atividade model = await App.Database.GetById(id);
 
-                this.Id = model.Id;
-                this.Data = model.Data;
-                this.Peso = model.Peso;
-                this.Descricao = model.Descricao;
-                this.Observacoes = model.Observacoes;
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Ops", ex.Message, "OK");
-            }
-        });
-    }
+            Id = model.Id;
+            Data = model.Data;
+            Peso = model.Peso;
+            Descricao = model.Descricao;
+            Observacoes = model.Observacoes;
+        }
+        catch (Exception ex)
+        {
+            await Application.Current.MainPage.DisplayAlert(
+                "Ops", ex.Message, "OK");
+        }
+    });
 
-    public ICommand NovaAtividade
+    public ICommand NovaAtividade => new Command(() =>
     {
-        get => new Command(() =>
-        {
-            Id = 0;
-            Descricao = string.Empty;
-            Data = DateTime.Now;
-            Peso = null;
-            Observacoes = string.Empty;
+        Id = 0;
+        Descricao = string.Empty;
+        Data = DateTime.Now;
+        Peso = null;
+        Observacoes = string.Empty;
 
-        });
-    }
+    });
 
-    public ICommand SalvarAtividade
+    public ICommand SalvarAtividade => new Command(async () =>
     {
-        get => new Command(async () =>
+        try
         {
-            try
+            Atividade model = new()
             {
-                Atividade model = new()
-                {
-                    Descricao = this.Descricao,
-                    Data = this.Data,
-                    Peso = this.Peso,
-                    Observacoes = this.observacoes,
-                };
+                Descricao = Descricao,
+                Data = Data,
+                Peso = Peso,
+                Observacoes = observacoes,
+            };
 
-                if (this.Id == 0)
-                {
-                    await App.Database.Insert(model);
-                }
-                else
-                {
-                    model.Id = this.Id;
-                    await App.Database.Update(model);
-                }
-
-                await Application.Current.MainPage.DisplayAlert(
-                    "Beleza", "Atividade salva", "OK");
-                await Shell.Current.GoToAsync("//MinhasAtividades");
-            }
-            catch (Exception ex)
+            if (Id == 0)
             {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Ops", ex.Message, "OK");
+                await App.Database.Insert(model);
             }
-        });
-    }
+            else
+            {
+                model.Id = Id;
+                await App.Database.Update(model);
+            }
+
+            await Application.Current.MainPage.DisplayAlert(
+                "Beleza", "Atividade salva", "OK");
+            await Shell.Current.GoToAsync("//MinhasAtividades");
+        }
+        catch (Exception ex)
+        {
+            await Application.Current.MainPage.DisplayAlert(
+                "Ops", ex.Message, "OK");
+        }
+    });
 }
