@@ -1,10 +1,11 @@
 using AppFit.Models;
+using SQLite;
 
 namespace AppFit.Helpers;
 
 public class SQLiteDatabaseHelper
 {
-    private readonly SQLiteDatabaseHelper _db;
+    private readonly SQLiteAsyncConnection _db;
 
     public SQLiteDatabaseHelper(string path)
     {
@@ -27,14 +28,15 @@ public class SQLiteDatabaseHelper
 
     public Task<int> Insert(Atividade atividade)
     {
-        return _db.Insert(atividade);
+        return _db.InsertAsync(atividade);
     }
 
-    public Task<Atividade> Update(Atividade atividade)
+    public Task<List<Atividade>> Update(Atividade atividade)
     {
         string sql = $"UPDATE Atividade " +
                 $"SET Descricao=?, Data=?, Peso=?, " +
                 $"Observacoes=? WHERE Id=?";
+
         return _db.QueryAsync<Atividade>(sql,
             atividade.Descricao, atividade.Data, atividade.Peso,
             atividade.Observacoes, atividade.Id);
