@@ -30,8 +30,7 @@ public class ListaAtividadesViewModel
         }
     }
 
-    ObservableCollection<Atividade> listaAtividades =
-        new ObservableCollection<Atividade>();
+    private ObservableCollection<Atividade> listaAtividades = new ObservableCollection<Atividade>();
     public ObservableCollection<Atividade> ListaAtividades
     {
         get => listaAtividades;
