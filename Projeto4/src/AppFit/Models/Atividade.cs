@@ -1,7 +1,10 @@
-﻿namespace AppFit.Models;
+﻿using SQLite;
+
+namespace AppFit.Models;
 
 public class Atividade
 {
+    [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
     public string Descricao { get; set; }
     public DateTime Data { get; set; }
