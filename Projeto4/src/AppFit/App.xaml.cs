@@ -6,10 +6,7 @@ public partial class App : Application
 {
     static SQLiteDatabaseHelper database;
 
-    public static SQLiteDatabaseHelper Database
-    {
-        get
-        {
+    public static SQLiteDatabaseHelper Database =>
             database ??= new SQLiteDatabaseHelper(
                 Path.Combine(
                     Environment.GetFolderPath(
@@ -17,10 +14,6 @@ public partial class App : Application
                     "banco.db3"
                 )
             );
-
-            return database;
-        }
-    }
 
     public App()
     {
