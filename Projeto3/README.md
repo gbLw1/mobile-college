@@ -1,3 +1,3 @@
-# Listagem de compras
+# Lista de compras
 
 App para listagem de compras, CRUD completo de produtos desenvolvido utilizando o framework MAUI.
