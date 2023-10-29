@@ -10,15 +10,6 @@ public class ListaAtividadesViewModel
     public event PropertyChangedEventHandler PropertyChanged;
     public string ParametroBusca { get; set; }
 
-    private int myVar;
-
-    public int MyProperty
-    {
-        get { return myVar; }
-        set { myVar = value; }
-    }
-
-
     private bool estaAtualizando = false;
     public bool EstaAtualizando
     {
@@ -63,7 +54,6 @@ public class ListaAtividadesViewModel
 
     public ICommand Buscar => new Command(async () =>
     {
-
         try
         {
             if (EstaAtualizando) return;
@@ -81,7 +71,6 @@ public class ListaAtividadesViewModel
         {
             EstaAtualizando = false;
         }
-
     });
 
     public ICommand AbrirDetalhesAtividade => new Command<int>(async (int id) =>
