@@ -10,18 +10,18 @@ public class ListaAtividadesViewModel
     public event PropertyChangedEventHandler PropertyChanged;
     public string ParametroBusca { get; set; }
 
-    private bool estaAtualizando = false;
+    private bool estaAtualizando;
     public bool EstaAtualizando
     {
         get => estaAtualizando;
         set
         {
             estaAtualizando = value;
-            PropertyChanged(this, new PropertyChangedEventArgs(nameof(EstaAtualizando)));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EstaAtualizando)));
         }
     }
 
-    private ObservableCollection<Atividade> listaAtividades = new ObservableCollection<Atividade>();
+    private ObservableCollection<Atividade> listaAtividades = new();
     public ObservableCollection<Atividade> ListaAtividades
     {
         get => listaAtividades;
