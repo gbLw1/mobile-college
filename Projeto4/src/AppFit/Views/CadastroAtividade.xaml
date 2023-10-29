@@ -2,7 +2,9 @@
 <ContentPage
     x:Class="AppFit.Views.CadastroAtividade"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:AppFit.ViewModels"
+    x:DataType="viewmodel:CadastroAtividadeViewModel">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding NovaAtividade}" Text="Nova" />
