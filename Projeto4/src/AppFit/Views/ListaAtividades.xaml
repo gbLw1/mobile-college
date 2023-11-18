@@ -40,7 +40,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="models:Atividade">
                             <ViewCell>
-                                <!--<ViewCell.ContextActions>
+                                <ViewCell.ContextActions>
                                     <MenuItem
                                         Command="{Binding Source={x:Reference Pagina}, Path=BindingContext.AbrirDetalhesAtividade}"
                                         CommandParameter="{Binding Id}"
@@ -49,7 +49,7 @@
                                         Command="{Binding Source={x:Reference Pagina}, Path=BindingContext.Remover}"
                                         CommandParameter="{Binding Id}"
                                         Text="Excluir" />
-                                </ViewCell.ContextActions>-->
+                                </ViewCell.ContextActions>
                                 <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto">
                                     <Label
                                         Grid.Row="0"
