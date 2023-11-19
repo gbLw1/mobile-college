@@ -91,6 +91,7 @@ public class ListaAtividadesViewModel
         }
         catch (Exception ex)
         {
+            await Application.Current.MainPage.DisplayAlert("Ops", ex.Message, "OK");
         }
         finally
         {
