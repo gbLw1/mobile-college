@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BuscaCep.Views.BuscaEndereco"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="BuscaEndereco">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <SearchBar x:Name="txt_cep" Placeholder="CEP:" />
+                <Button Clicked="Button_Clicked" Text="Buscar" />
+            </StackLayout>
+
+            <ActivityIndicator
+                x:Name="act_carregando"
+                IsRunning="True"
+                IsVisible="False" />
+
+            <StackLayout>
+                <Label Text="Id Logradouro:" />
+                <Label Text="{Binding id_logradouro}" />
+                <Label Text="Id Cidade:" />
+                <Label Text="{Binding id_cidade}" />
+                <Label Text="Tipo:" />
+                <Label Text="{Binding tipo}" />
+                <Label Text="Descrição:" />
+                <Label Text="{Binding descricao_sem_numero}" />
+                <Label Text="Cidade:" />
+                <Label Text="{Binding descricao_cidade}" />
+                <Label Text="Bairro:" />
+                <Label Text="{Binding descricao_bairro}" />
+                <Label Text="Estado:" />
+                <Label Text="{Binding uf}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
